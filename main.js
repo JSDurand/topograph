@@ -67,6 +67,13 @@ function Submitbutton () {
   else {topograph(parseInt(a),parseInt(b),parseInt(c));}
 }
 
+// add enter funcionality
+document.querySelector("#input_label").addEventListener("keyup", event => {
+  if (event.key !== "Enter") {return;}
+  Submitbutton();
+  event.preventDefault();
+});
+
 // calculate the positive direction
 function routine_positive_calculations (init_1, init_2, init_3) {
   var repeated = false; // A variable to determine if we shall stop.
@@ -78,7 +85,7 @@ function routine_positive_calculations (init_1, init_2, init_3) {
 
     var l = area_array.length;
 
-    console.log(area_array);
+    // console.log(area_array);
 
     for (var i = 0; i < l; i++) {
       if (area_array[i].valeur > 0) {graph.positive_indices.push(i);}
