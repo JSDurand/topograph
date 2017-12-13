@@ -176,6 +176,11 @@ function gcd (n, m) {
 };
 
 function find_initial_vector (a, b, c) {
+  // To find the initial vector, we first multiply the form by a
+  // to suppose that a = 1. In this case we try integers after integers
+  // to find a critical integer, and then divide a back.
+  // We don't need to actually try out every integer, as we have an
+  // upper bound by b/2.
   var initial_vector = {
     x : 0,
     y : 1,
@@ -198,8 +203,8 @@ function find_initial_vector (a, b, c) {
       var g = gcd(i,a);
       var x = (b < 0) ? i / g : -i / g;
       var y = a / g;
-      initial_vector.x = x;
-      initial_vector.y = y;
+      initial_vector.x      = x;
+      initial_vector.y      = y;
       initial_vector.valeur = a * x * x + b * x * y + c * y * y;
 
       break;
@@ -241,13 +246,6 @@ function topograph (a,b,c) {
     // Now deal with the complex case
     // We need first to find the initial vectors of the river,
     // and the rest is nothing more than routine calculations.
-    
-    // To find the initial vector, we first multiply the form by a
-    // to suppose that a = 1. In this case we try integers after integers
-    // to find a critical integer, and then divide a back.
-    // We don't need to actually try out every integer, as we have an
-    // upper bound by b/2.
-    // alert('Only the case a*c < 0 and a > 0 is implemented!');
 
     function form (a, b, c, x, y) {
       // this will be used only several times.
